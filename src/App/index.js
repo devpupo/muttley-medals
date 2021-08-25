@@ -3,14 +3,13 @@ import Lottie from "react-lottie";
 
 import animationData from "../animation.json";
 
-import { Container, ButtonWrapper } from "./styles";
+import { Container, ButtonWrapper, Counter } from "./styles";
 
 const App = () => {
-  const [isMedal, setMedal] = useState(0);
+  const [isMedals, setMedal] = useState(0);
   const [animationState, setAnimationState] = useState({
     isStopped: true,
     isPaused: false,
-    //direction: -1,
   });
 
   const defaultOptions = {
@@ -25,27 +24,26 @@ const App = () => {
   const onClick = () => {
     setAnimationState({
       ...animationState,
-      isStopped: !animationState.isStopped
+      isStopped: !animationState.isStopped,
     });
 
-    setMedal(isMedal + 1);
+    if (animationState.isStopped) setMedal(isMedals + 1);
   };
 
   return (
     <Container>
-      <h1>Muttley Medals</h1>
       <ButtonWrapper onClick={onClick}>
-        <div className="animation">
+        <div className="animation">          
           <Lottie
             options={defaultOptions}
             width={200}
             height={200}
-            //direction={animationState.direction}
             isStopped={animationState.isStopped}
             isPaused={animationState.isPaused}
           />
         </div>
       </ButtonWrapper>
+      <Counter>{isMedals}</Counter>
     </Container>
   );
 };
