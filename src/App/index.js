@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Lottie from "react-lottie";
 
-import animationData from "../animation.json";
+import animationData from "../assets/animation.json";
 
-import { Container, ButtonWrapper, Counter } from "./styles";
+import { Container, Avatar, ButtonWrapper, Counter } from "./styles";
 
 const App = () => {
   const [isMedals, setMedal] = useState(0);
@@ -32,6 +32,9 @@ const App = () => {
 
   return (
     <Container>
+      <img src='../img/muttley.png' alt=''/>
+      <Avatar />
+
       <ButtonWrapper onClick={onClick}>
         <div className="animation">          
           <Lottie
@@ -42,6 +45,7 @@ const App = () => {
             isPaused={animationState.isPaused}
           />
         </div>
+      
       </ButtonWrapper>
       <Counter>{isMedals}</Counter>
     </Container>

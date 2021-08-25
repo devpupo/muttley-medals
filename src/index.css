@@ -1,12 +1,13 @@
 * {
   box-sizing: border-box;
-  font-family: cursive;
+  font-family: cursive; 
 }
 
 html,
 body,
 #root {
+  overflow: hidden;
+
   height: 100vh;
- 
   background-color: #90d1f9;
 }
