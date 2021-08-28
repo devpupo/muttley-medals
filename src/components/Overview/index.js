@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Lottie from "react-lottie";
 
 import animationLikeData from "../../assets/animationLike.json";
@@ -25,6 +25,15 @@ const Overview = () => {
   const [isDislikeState, setDislikeState] = useState(initialState);
   const [isActionState, setActionState] = useState();
 
+  useEffect(() => {
+    async function restartAction() {
+      await sleep(4000);
+      setActionState("");
+    }
+
+    restartAction();
+  }, [isActionState]);
+
   const defaultOptions = {
     loop: false,
     autoplay: false,
@@ -43,10 +52,9 @@ const Overview = () => {
     animationData: animationDislikeData,
   };
 
-  const restartAction = async () => {
-    await sleep(4000);
-    setActionState('');
-  }
+  // const restartAction = async () => {
+
+  // }
 
   const onClickLike = () => {
     setLikeState({
@@ -57,7 +65,6 @@ const Overview = () => {
     if (isLikeState.isStopped) setMedal(isMedals + 1);
 
     setActionState("like");
-    restartAction();
   };
 
   const onClickDislike = () => {
@@ -69,7 +76,6 @@ const Overview = () => {
     if (isDislikeState.isStopped) setMedal(isMedals - 1);
 
     setActionState("dislike");
-    restartAction();
   };
 
   return (
