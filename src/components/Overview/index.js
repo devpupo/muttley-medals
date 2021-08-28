@@ -3,9 +3,11 @@ import Lottie from "react-lottie";
 
 import animationLikeData from "../../assets/animationLike.json";
 import animationDislikeData from "../../assets/animationDislike.json";
+import { sleep } from "../../services/sleep";
+
 import {
   Container,
-  Avatar,
+  Figure,
   ButtonWrapper,
   ButtonLike,
   ButtonDislike,
@@ -21,6 +23,7 @@ const Overview = () => {
   const [isMedals, setMedal] = useState(0);
   const [isLikeState, setLikeState] = useState(initialState);
   const [isDislikeState, setDislikeState] = useState(initialState);
+  const [isActionState, setActionState] = useState();
 
   const defaultOptions = {
     loop: false,
@@ -40,6 +43,11 @@ const Overview = () => {
     animationData: animationDislikeData,
   };
 
+  const restartAction = async () => {
+    await sleep(4000);
+    setActionState('');
+  }
+
   const onClickLike = () => {
     setLikeState({
       ...isLikeState,
@@ -47,6 +55,9 @@ const Overview = () => {
     });
 
     if (isLikeState.isStopped) setMedal(isMedals + 1);
+
+    setActionState("like");
+    restartAction();
   };
 
   const onClickDislike = () => {
@@ -56,11 +67,14 @@ const Overview = () => {
     });
 
     if (isDislikeState.isStopped) setMedal(isMedals - 1);
+
+    setActionState("dislike");
+    restartAction();
   };
 
   return (
     <Container>
-      <Avatar />
+      <Figure action={isActionState} />
 
       <ButtonWrapper>
         <ButtonLike onClick={onClickLike}>

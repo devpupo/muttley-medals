@@ -1,9 +1,22 @@
 import styled from "styled-components";
 
 import muttleyImage from "../../assets/muttley.png";
-import muttleyMedalImage from "../../assets/muttley-run.png";
+import muttleyMedalImage from "../../assets/muttley-medal.png";
+import muttleyRunImage from "../../assets/muttley-run.png";
+import jokeImage from "../../assets/joke.png";
 
-import { Button } from '../Button';
+import { Button } from "../Button";
+
+const handleFigureType = (action) => {
+  switch (action) {
+    case "dislike":
+      return jokeImage;
+    case "like":
+      return muttleyMedalImage;
+    default:
+      return muttleyImage;
+  }
+};
 
 export const Container = styled.div`
   display: flex;
@@ -14,17 +27,18 @@ export const Container = styled.div`
   margin-top: 100px;
 `;
 
-export const Avatar = styled.div`
-  background-image: url(${muttleyImage});
+export const Figure = styled.div`
+  background-image: url(${({ action }) => handleFigureType(action)});
   background-repeat: no-repeat;
   background-size: 300px;
 
   height: 300px;
   width: 300px;
 
-  &:hover {
-    background-image: url(${muttleyMedalImage});
-  }
+/* 
+   &:hover {
+    background-image: url(${muttleyRunImage});
+  } */
 `;
 
 export const ButtonWrapper = styled.button`
