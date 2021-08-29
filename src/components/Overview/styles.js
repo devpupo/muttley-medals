@@ -41,7 +41,7 @@ export const Figure = styled.div`
   } */
 `;
 
-export const ButtonWrapper = styled.button`
+export const ButtonWrapper = styled.div`
   display: flex;
   justify-content: space-between;
 

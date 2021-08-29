@@ -52,10 +52,6 @@ const Overview = () => {
     animationData: animationDislikeData,
   };
 
-  // const restartAction = async () => {
-
-  // }
-
   const onClickLike = () => {
     setLikeState({
       ...isLikeState,
